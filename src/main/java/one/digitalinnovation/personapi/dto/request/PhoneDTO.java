@@ -1,4 +1,4 @@
-package one.digitalinnovation.personapi.entity;
+package one.digitalinnovation.personapi.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,23 +8,23 @@ import one.digitalinnovation.personapi.enums.PhoneType;
 import org.jetbrains.kotlin.fir.expressions.FirConstKind;
 import org.jetbrains.kotlin.ir.backend.js.export.ExportedType;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
-@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Phone {
+public class PhoneDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private FirConstKind.Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private PhoneType type;
 
-    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 13, max = 14)
     private ExportedType.Primitive.String number;
 }
