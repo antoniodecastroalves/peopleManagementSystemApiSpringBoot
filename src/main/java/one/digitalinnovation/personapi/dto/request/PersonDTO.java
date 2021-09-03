@@ -1,16 +1,15 @@
 package one.digitalinnovation.personapi.dto.request;
 
-import javaslang.collection.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-import org.jetbrains.kotlin.fir.expressions.FirConstKind;
-import org.jetbrains.kotlin.ir.backend.js.export.ExportedType;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,7 +17,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class PersonDTO {
 
-    private FirConstKind.Long id;
+    private Long id;
 
     @NotEmpty
     @Size(min = 2, max = 100)
@@ -34,6 +33,7 @@ public class PersonDTO {
 
     private String birthDate;
 
+    @Valid
+    @NotEmpty
     private List<PhoneDTO> phones;
 }
-
